@@ -16,7 +16,7 @@ pnpm dev
 bun dev
 ```
 
-You can access app through [http://localhost:3333](http://localhost:3333) on your default browser.
+You can access app through [http://localhost:3000](http://localhost:3000) on your default browser.
 
 # Data Fetching
 
