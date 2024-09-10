@@ -1,6 +1,5 @@
 "use client";
 
-import { useContext } from "react";
 import {
   Avatar,
   Box,
@@ -9,9 +8,10 @@ import {
   Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useContext } from "react";
 
-import { UserInfoEditModal } from "./userInfoEditModal";
 import { UserInfoContext } from "@/state/userInfoContext";
+import { UserInfoEditModal } from "./userInfoEditModal";
 
 export const Header = () => {
   const { userInfo } = useContext(UserInfoContext);
@@ -41,7 +41,7 @@ export const Header = () => {
             fontWeight="normal"
             onClick={openUserEditModal}
           >
-            <Avatar size="sm" />
+            <Avatar size="sm" src='https://bit.ly/dan-abramov' />
             <Text>
               {userInfo!.username} ({userInfo!.jobTitle})
             </Text>
