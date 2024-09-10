@@ -1,33 +1,47 @@
-import { useContext, useState } from "react";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
   Button,
-  Stack,
   Container,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Stack,
 } from "@chakra-ui/react";
+import { useContext, useState } from "react";
 
-import { UserInfoContext } from "@/state/userInfoContext";
 import {
   MAX_JOBTITLE_LENGTH,
   MAX_USERNAME_LENGTH,
   UserInfo,
 } from "@/models/userInfo";
 import { Input } from "@/shared/input";
+import { UserInfoContext } from "@/state/userInfoContext";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
 };
 
+/**
+ * A modal that allows the user to edit their username and job title.
+ * The modal is shown when the user is logged in and the user info is available in the context.
+ * The modal is centered on the screen, and the content is rendered in a {@link ModalContent} component.
+ * The modal has a submit button that updates the user info and closes the modal when clicked.
+ * The modal has a cancel button that closes the modal when clicked.
+ *
+ * @param {{ isOpen: boolean, onClose: () => void }} props
+ * @returns {JSX.Element}
+ */
 export const UserInfoEditModal = ({ isOpen, onClose }: Props) => {
   const { userInfo, updateUserInfo } = useContext(UserInfoContext);
   const [newUserInfo, setNewUserInfo] = useState<UserInfo>(userInfo!);
 
+  /**
+   * Submits the form by updating the user info in the context,
+   * and then closes the modal.
+   */
   function submit() {
     updateUserInfo(newUserInfo);
     onClose();
@@ -44,7 +58,7 @@ export const UserInfoEditModal = ({ isOpen, onClose }: Props) => {
             <Container>
               <Input
                 label="Username"
-                placeholder="user12345"
+                placeholder="username"
                 allowSpaces={false}
                 maxLength={MAX_USERNAME_LENGTH}
                 description={`${MAX_USERNAME_LENGTH} characters maximum.`}

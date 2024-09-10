@@ -20,6 +20,20 @@ import { UserInfoModal } from "./userInfo";
 
 const MAX_NUM_SLIDES = 2;
 
+/**
+ * A modal that guides the user through a 2-step process of entering
+ * their username and job title. The modal is shown when the user is
+ * logged in and no user info is available in the context.
+ *
+ * The modal starts by asking for the user's username, and then asks
+ * for their job title. The modal is closed when the user finishes
+ * entering their job title.
+ *
+ * The modal is centered on the screen, and the content is rendered
+ * in a {@link ModalContent} component.
+ *
+ * @returns The WelcomeModal component.
+ */
 export const WelcomeModal = () => {
   const { updateUserInfo } = useContext(UserInfoContext);
 
@@ -27,10 +41,19 @@ export const WelcomeModal = () => {
   const [jobTitle, setJobTitle] = useState<string>("");
   const [currSlide, setCurrSlide] = useState<number>(1);
 
+  /**
+   * Increments the current slide number.
+   * This is used to navigate forward through the modal's
+   * two slides.
+   */
   function gotoNextSlide() {
     setCurrSlide((v) => v + 1);
   }
 
+  /**
+   * Finishes the welcome modal by storing the entered username and job title,
+   * and then closes the modal.
+   */
   function finish() {
     updateUserInfo({ username, jobTitle });
   }

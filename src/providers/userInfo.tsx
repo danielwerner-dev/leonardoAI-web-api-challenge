@@ -3,8 +3,8 @@
 import { useState } from "react";
 
 import { UserInfo } from "@/models/userInfo";
-import { UserInfoContext } from "@/state/userInfoContext";
 import { StorageManager } from "@/state/storageManager";
+import { UserInfoContext } from "@/state/userInfoContext";
 import { useMounted } from "@/utils/useMounted";
 
 const storage = new StorageManager<UserInfo | undefined>("userInfo", undefined);
@@ -20,6 +20,10 @@ export const UserInfoWrapper = ({ children }: React.PropsWithChildren) => {
     setUserInfo(storage.get());
   });
 
+  /**
+   * Updates the user info in the context and in local storage.
+   * @param newInfo The new user info.
+   */
   function updateUserInfo(newInfo: UserInfo) {
     setUserInfo(newInfo);
     storage.set(newInfo);

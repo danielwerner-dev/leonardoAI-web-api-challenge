@@ -1,12 +1,12 @@
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 import {
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
   Heading,
-  Text,
   Link,
+  Text,
 } from "@chakra-ui/react";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
 import { CountryListItem } from "@/models/country";
@@ -15,6 +15,11 @@ type Props = {
   country: CountryListItem;
 };
 
+/**
+ * A card component that displays information about a country.
+ * @param {{ country: CountryListItem }} props
+ * @returns {JSX.Element}
+ */
 export const CountryCard = ({ country }: Props) => {
   return (
     <Card variant="outline">

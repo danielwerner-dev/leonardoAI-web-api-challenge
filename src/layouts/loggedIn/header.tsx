@@ -13,6 +13,12 @@ import { useContext } from "react";
 import { UserInfoContext } from "@/state/userInfoContext";
 import { UserInfoEditModal } from "./userInfoEditModal";
 
+/**
+ * A header component that renders a button with the user's username and job title,
+ * and a modal that allows the user to edit their information.
+ *
+ * @returns A JSX element containing the header component.
+ */
 export const Header = () => {
   const { userInfo } = useContext(UserInfoContext);
 

@@ -2,22 +2,22 @@
 
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import {
+  Box,
   Heading,
-  Text,
+  Stack,
   Table,
   Tbody,
-  Tr,
   Td,
+  Text,
   Th,
-  Box,
-  Stack,
+  Tr,
 } from "@chakra-ui/react";
 import { Suspense } from "react";
 
 import { Country } from "@/models/country";
 
-import { singleCountryQuery } from "./queries";
 import { NoDataText } from "./noDataText";
+import { singleCountryQuery } from "./queries";
 
 import styles from "./styles.module.css";
 
@@ -38,7 +38,16 @@ export const CountryInfo = ({ code }: Props) => {
 
   const c = data.country;
 
-  function renderArrayData<T>(arr: T[], transformData?: (d: T) => string) {
+  /**
+   * Renders an array of values as a string.
+   * If the array is empty, renders a {@link NoDataText} component.
+   * If `transformData` is undefined, the array is joined with a comma and space.
+   * If `transformData` is provided, the array is mapped and the results are joined.
+   * @param {T[]} arr The array of values to render.
+   * @param {(d: T) => string} [transformData] A function to transform each value.
+   * @returns {JSX.Element} The rendered string.
+   */
+  function renderData<T>(arr: T[], transformData?: (d: T) => string) {
     if (arr.length === 0) {
       return <NoDataText />;
     }
@@ -75,11 +84,11 @@ export const CountryInfo = ({ code }: Props) => {
               </Tr>
               <Tr>
                 <Th>States</Th>
-                <Td>{renderArrayData(c.states, (s) => s.name)}</Td>
+                <Td>{renderData(c.states, (s) => s.name)}</Td>
               </Tr>
               <Tr>
                 <Th>Subdivisions</Th>
-                <Td>{renderArrayData(c.subdivisions, (s) => s.name)}</Td>
+                <Td>{renderData(c.subdivisions, (s) => s.name)}</Td>
               </Tr>
             </Tbody>
           </Table>
@@ -95,7 +104,7 @@ export const CountryInfo = ({ code }: Props) => {
               <Tr>
                 <Th width={TH_WIDTH}>Languages</Th>
                 <Td>
-                  {renderArrayData(c.languages, (lang) =>
+                  {renderData(c.languages, (lang) =>
                     lang.name === lang.native
                       ? lang.name
                       : `${lang.name} (${lang.native})`
@@ -104,7 +113,7 @@ export const CountryInfo = ({ code }: Props) => {
               </Tr>
               <Tr>
                 <Th>Currencies</Th>
-                <Td>{renderArrayData(c.currencies)}</Td>
+                <Td>{renderData(c.currencies)}</Td>
               </Tr>
             </Tbody>
           </Table>

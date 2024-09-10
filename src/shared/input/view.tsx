@@ -1,6 +1,6 @@
 import { Input as ChakraInput, InputProps, Text } from "@chakra-ui/react";
-import { InputEventProps } from "./models";
 import { useState } from "react";
+import { InputEventProps } from "./models";
 
 type Props = InputEventProps &
   Omit<InputProps, "onChange" | "onKeyDown"> & {
@@ -29,6 +29,18 @@ export const Input = ({
 }: Props) => {
   const [error, setError] = useState<string>();
 
+  /**
+   * Handles validation on the input field. Validation is set as follows:
+   *    - Must begin with an alphabet
+   *    - Must be alphanumeric (but can accept hyphens)
+   *    - Spaces are or are not allowed (depending on `allowSpaces`)
+   *
+   * If the input is invalid, sets the error state to a string describing
+   * the invalid input. If the input is valid, sets the error state to undefined.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   * The event object from the input field.
+   */
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value?.trim();
     customOnChange(value);
