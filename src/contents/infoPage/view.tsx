@@ -9,8 +9,8 @@ import { Suspense } from "react";
 import { LoggedInLayout } from "@/layouts/loggedIn";
 import { CountryListItem } from "@/models/country";
 
-import { countriesQuery } from "./queries";
 import { CountryCard } from "./card";
+import { countriesQuery } from "./queries";
 
 /** The main page of the application, displaying a grid view of all countries. */
 export const InfoPage = () => {
@@ -30,7 +30,7 @@ export const InfoPage = () => {
   return (
     <LoggedInLayout>
       <Heading as="h1" textAlign="center" size="2xl">
-        Information Page
+        Countries List
       </Heading>
 
       <Suspense fallback={<div>Loading...</div>}>

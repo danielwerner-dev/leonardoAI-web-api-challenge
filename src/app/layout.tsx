@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { ChakraWrapper } from "@/providers/chakra";
 import { ApolloWrapper } from "@/providers/apollo";
+import { ChakraWrapper } from "@/providers/chakra";
 import { UserInfoWrapper } from "@/providers/userInfo";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Leonardo.Ai Technical Challenge",
-  description: "By Michelle Poon",
+  title: "Leonardo.Ai - Countries List",
+  description: "Daniel Werner",
 };
 
 export default function RootLayout({
