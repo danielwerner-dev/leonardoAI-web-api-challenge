@@ -1,7 +1,7 @@
 import { MAX_JOBTITLE_LENGTH } from "@/models/userInfo";
 import { Input, InputEventProps } from "@/shared/input";
 
-export const WelcomeModalSlide2 = (props: InputEventProps) => (
+export const JobInfoModal = (props: InputEventProps) => (
   <Input
     label="Next, enter your job title."
     autoFocus

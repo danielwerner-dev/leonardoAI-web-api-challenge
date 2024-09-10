@@ -1,23 +1,22 @@
 "use client";
 
-import { useContext, useState } from "react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  Button,
-  SlideFade,
-  CircularProgress,
-} from "@chakra-ui/react";
 import { ArrowForwardIcon, CheckIcon } from "@chakra-ui/icons";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  SlideFade
+} from "@chakra-ui/react";
+import { useContext, useState } from "react";
 
 import { UserInfoContext } from "@/state/userInfoContext";
 
-import { WelcomeModalSlide1 } from "./slide1";
-import { WelcomeModalSlide2 } from "./slide2";
+import { JobInfoModal } from "./jobInfo";
+import { UserInfoModal } from "./userInfo";
 
 const MAX_NUM_SLIDES = 2;
 
@@ -44,14 +43,14 @@ export const WelcomeModal = () => {
 
         <ModalBody>
           {currSlide === 1 && (
-            <WelcomeModalSlide1
+            <UserInfoModal
               onChange={setUsername}
               onEnter={gotoNextSlide}
             />
           )}
           {currSlide === 2 && (
             <SlideFade in={true}>
-              <WelcomeModalSlide2 onChange={setJobTitle} onEnter={finish} />
+              <JobInfoModal onChange={setJobTitle} onEnter={finish} />
             </SlideFade>
           )}
         </ModalBody>
